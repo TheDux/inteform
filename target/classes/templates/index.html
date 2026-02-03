@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTEFORM - Página Principal</title>
+    <link rel="icon" type="image/png" href="/img/icon-browser.png">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>
+                <a href="/" class="welcome-link">Bem-vindo a INTEFORM®</a>
+                <img src="/img/company-logo.jpg" alt="Logo INTEFORM" class="logo-header">
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="/" class="active">Início</a></li>
+                    <li><a href="/sobre">Sobre Nós</a></li>
+                    <li><a href="/localizacao">Localização</a></li>
+                    <li><a href="/contato">Fale Conosco</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="content">
+        <!-- Carrossel de Produtos -->
+        <div class="products-carousel">
+            <h3>Nossos Produtos</h3>
+            <div class="carousel-container">
+                <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
+                <div class="carousel-wrapper">
+                    <div class="carousel-track">
+                        <div class="carousel-item">
+                            <img src="/img/Arduino-Uno.jpg" alt="Arduino Uno">
+                            <p>Arduino Uno</p>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/img/ATtiny85.jpg" alt="ATtiny85">
+                            <p>ATtiny85</p>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/img/conversor-rs485-para-ethernet-tcpip-usr-tcp232-304.jpg" alt="Conversor RS485 Para Ethernet TCPIP USR TCP232 304">
+                            <p>Conversor RS485 Para Ethernet TCPIP USR TCP232 304</p>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/img/raspberry-pi-5.png" alt="Raspberry Pi 5">
+                            <p>Raspberry Pi 5</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
+            </div>
+        </div>
+
+        <div class="card home-content">
+            <h2>Bem-vindo à INTEFORM</h2>
+            <p>
+                A INTEFORM é uma empresa de tecnologia dedicada a fornecer soluções inovadoras e de alta qualidade 
+                para nossos clientes. Com uma equipe de profissionais experientes, nos empenhamos em entregar 
+                produtos e serviços que superam as expectativas de mercado.
+            </p>
+            <p>
+                Estamos comprometidos com a excelência, inovação e satisfação do cliente. Nossas soluções são 
+                desenvolvidas com base nas melhores práticas de mercado, garantindo eficiência, confiabilidade 
+                e segurança em todos os nossos projetos.
+            </p>
+            <p>
+                Seja bem-vindo! Navegue pela nossa plataforma para conhecer mais sobre nossa localização 
+                e informações de contato.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 INTEFORM. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const carousel = document.querySelector('.carousel-track');
+        const items = document.querySelectorAll('.carousel-item');
+        
+        // Aguarda o carregamento para calcular as dimensões corretas
+        window.addEventListener('load', function() {
+            const itemWidth = items[0].offsetWidth + 20; // 20px é o gap
+            const totalItems = items.length;
+            // O carrossel pode mostrar no máximo até deixar o último item visível
+            const maxSlide = totalItems - 1;
+
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentSlide * itemWidth}px)`;
+            }
+
+            function moveCarousel(direction) {
+                currentSlide += direction;
+                
+                // Loop infinito mas respeita o limite máximo
+                if (currentSlide > maxSlide) {
+                    currentSlide = 0;
+                } else if (currentSlide < 0) {
+                    currentSlide = maxSlide;
+                }
+                
+                updateCarousel();
+            }
+
+            // Auto play a cada 5 segundos
+            setInterval(() => {
+                moveCarousel(1);
+            }, 5000);
+
+            // Permite clicar nos botões
+            window.moveCarousel = moveCarousel;
+        });
+    </script>
+</body>
+</html>

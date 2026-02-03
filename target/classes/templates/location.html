@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTEFORM - Localização</title>
+    <link rel="icon" type="image/png" href="/img/icon-browser.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        #map {
+            height: 500px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>INTEFORM</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Início</a></li>
+                    <li><a href="/sobre">Sobre Nós</a></li>
+                    <li><a href="/localizacao" class="active">Localização</a></li>
+                    <li><a href="/contato">Fale Conosco</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="card">
+            <h2>Nossa Localização</h2>
+            
+            <div class="location-info">
+                <p><strong>Endereço:</strong></p>
+                <p>Avenida Ipiranga, 1100</p>
+                <p>Sala 90/94</p>
+                <p>CENTRO</p>
+                <p>SÃO PAULO - SP</p>
+                <p>CEP: 01040-904</p>
+            </div>
+
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 INTEFORM. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Mapa com Leaflet (Open Street Map) -->
+    <script>
+        function initMap() {
+            // Coordenadas do endereço: Avenida Ipiranga, 1100, São Paulo
+            const latitude = -23.5505;
+            const longitude = -46.6333;
+            
+            // Criar o mapa
+            const map = L.map('map').setView([latitude, longitude], 16);
+            
+            // Adicionar tiles do OpenStreetMap
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 19
+            }).addTo(map);
+            
+            // Adicionar marker
+            const marker = L.marker([latitude, longitude]).addTo(map);
+            
+            // Adicionar popup ao marker
+            marker.bindPopup(
+                '<div style="font-weight: bold;">INTEFORM</div>' +
+                'Avenida Ipiranga, 1100<br>' +
+                'Sala 90/94<br>' +
+                'São Paulo - SP<br>' +
+                'CEP: 01040-904'
+            ).openPopup();
+        }
+        
+        // Inicializar o mapa quando a página carregar
+        window.addEventListener('load', initMap);
+    </script>
+</body>
+</html>
