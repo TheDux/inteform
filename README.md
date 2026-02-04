@@ -1,14 +1,15 @@
-# INTEFORM - Aplicação Frontend
+# INTEFORM - Aplicação Frontend hospedada no Render: https://inteform.onrender.com/
 
 Bem-vindo à aplicação frontend da **INTEFORM**! Esta é uma aplicação web desenvolvida em **Java** utilizando **Spring Boot** e **Thymeleaf**.
 
 ## 📋 Descrição
 
-A aplicação consiste em um site com 3 páginas principais:
+A aplicação consiste em um site com 4 páginas principais:
 
 1. **Página Inicial** - Apresentação da empresa INTEFORM com texto descritivo
-2. **Localização** - Endereço da empresa integrado com Google Maps
-3. **Fale Conosco** - Informações de contato (telefone e e-mail)
+2. **Sobre** - Informações adicionais sobre a empresa
+3. **Localização** - Endereço da empresa integrado com Google Maps
+4. **Fale Conosco** - Informações de contato (telefone e e-mail)
 
 ## 🛠 Requisitos
 
